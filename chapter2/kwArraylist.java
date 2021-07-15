@@ -56,5 +56,83 @@ public class kwArraylist <E> {
 
     }//reallocate
 
+    public String toString(){
+        String date= "[ ";
+        for(int i = 0 ; i < size ; i++)
+            date += theDate[i] + " ,";
+        date += " ]";
+       return date;
+    }
+
+    public void add (int index, E anEntry){
+       if(index < 0 || index >= size)
+            throw new ArrayIndexOutOfBoundsException();
+        //shafting backword
+        for(int i = size ; i > index ;i--)
+            theDate[i]=theDate[i-1];
+        theDate[index]=anEntry;
+        size++;
+    }
+
+    public int indexOf(E anEntry){
+        // use loop and if to search the element in case available return number of index otherwise return -1;
+        for(int i = 0; i < size ; i++ )
+            if(theDate[i].equals(anEntry)   )
+                return i;
+        return -1;
+    }
+
+    public boolean contians(E anEntry ){
+
+        if(indexOf(anEntry) == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public E get (int index){
+        if(index < 0 || index >= size)
+            throw new ArrayIndexOutOfBoundsException();
+        return theDate[index];
+    }
+
+    public E set(int index, E lastValue){
+        if(index < 0 || index >= size)
+            throw new ArrayIndexOutOfBoundsException();
+
+        E oldValue= theDate[index];
+        theDate[index]=lastValue;
+        return oldValue;
+    }
+
+    public E remove (int index){
+
+        if(index < 0 || index >= size)
+            throw new ArrayIndexOutOfBoundsException();
+
+        E removed= theDate[index];
+        for(int i = index+1 ; i < size;i++)
+            theDate[i-1]=theDate[i];
+        size--;
+        return removed;
+    }
+
+    public boolean remove(E anEntry){
+
+        int index = indexOf(anEntry);
+        if(index != -1 ){
+            remove(index);
+        return true;}
+        else
+            return false;
+    }
+
+    public void clear(){
+        for(int i=0; i < size; i ++ )
+            theDate[i]=null;
+        size=0;
+    }
+
+
 
 }//class
